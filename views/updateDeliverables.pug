@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        title Update deliverable info
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Deliverables
+        .form-wrapper
+
+            form(action="/update-cobj" method="POST")
+                deliverable_name
+                label(for="newName") New Name
+                input(type="text" name="newName" required)
+                label(for="newStatus") New status
+                input(type="text" name="newStatus" required)
+                label(for="newClient") New Client
+                input(type="text" name="newClient" required)
+                
+                label(for="newDueDate") New Due Date
+                input(type="text" name="newDueDate" required)
+
+                input(type="submit" value="Submit") 
