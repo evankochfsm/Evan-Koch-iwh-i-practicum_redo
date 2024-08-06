@@ -6,7 +6,9 @@ html(lang="en")
     body
         h1 Deliverables
         .form-wrapper
-
+            p Name: #{deliverable_name}
+            p Status: #{status}
+            p Client: #{client}          
             form(action="/update-cobj" method="POST")
                 deliverable_name
                 label(for="newName") New Name
@@ -16,7 +18,4 @@ html(lang="en")
                 label(for="newClient") New Client
                 input(type="text" name="newClient" required)
                 
-                label(for="newDueDate") New Due Date
-                input(type="text" name="newDueDate" required)
-
                 input(type="submit" value="Submit") 

@@ -9,15 +9,13 @@ app.use(express.json());
 
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
 const PRIVATE_APP_ACCESS = '';
-//test3
-
                         
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
 app.get('/', async (req, res) => {
-    const deliverables = 'https://api.hubspot.com/crm/v3/objects/2-32667144?properties=Client,Status,Name,Deliverable_Name,Due_Date';
+    const deliverables = 'https://api.hubspot.com/crm/v3/objects/2-32667144?properties=Client,Status,Name,Deliverable_Name';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
@@ -38,7 +36,7 @@ app.get('/', async (req, res) => {
 app.get('/update-cobj', async (req, res) => {
     const id = req.query.id;
     console.log(id);
-    const deliverableEndpoint = 'https://api.hubspot.com/crm/v3/objects/2-32667144/' + id +'?properties=client,status,name,deliverable_name,due_date';
+    const deliverableEndpoint = 'https://api.hubspot.com/crm/v3/objects/2-32667144/' + id +'?properties=client,status,name,deliverable_name';
     console.log(deliverableEndpoint);
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -47,9 +45,10 @@ app.get('/update-cobj', async (req, res) => {
 
     try {
         const resp = await axios.get(deliverableEndpoint, { headers });
-        const data = resp.data.results;
-        console.log(data);
-        res.render('updateDeliverables', { title: 'Deliverables | HubSpot APIs', data });      
+        const data = resp.data;
+        //console.log(data);
+        res.render('updateDeliverables', {client: data.properties.client, deliverable_name: data.properties.deliverable_name, status: data.properties.status});    
+       // res.json(data);
     } catch (error) {
         console.error(error);
     }
@@ -62,15 +61,12 @@ app.post('/update-cobj', async (req, res) => {
         properties: {
             "deliverable_name": req.body.newName,
             "status": req.body.newStatus,
-            "client": req.body.newClient,
-            "due_date": req.body.newDueDate
+            "client": req.body.newClient
         }
     }
     const id = req.query.id;
 
-    console.log(update);
-
-    const updateDeliverable = 'https://api.hubapi.com/crm/v3/objects/2-32667144/' + id;
+    const updateDeliverable = 'https://api.hubapi.com/crm/v3/objects/2-32667144/14384526940';
 
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -79,10 +75,11 @@ app.post('/update-cobj', async (req, res) => {
 
     try { 
         await axios.patch(updateDeliverable, update, { headers } );
-        //res.redirect('back');
-        res.redirect('localhost:3000/');
+        res.redirect('back');
+        //res.redirect('localhost:3000/');
     } catch(err) {
         console.error(err);
+
     }
 
 });
