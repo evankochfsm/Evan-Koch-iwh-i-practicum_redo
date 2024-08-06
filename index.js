@@ -60,8 +60,8 @@ app.post('/update-cobj', async (req, res) => {
         properties: {
             "deliverable_name": req.body.newName,
             "status": req.body.newStatus,
-            "client": req.body.newClient
-
+            "client": req.body.newClient,
+            "due_date": req.body.newDueDate
         }
     }
     const id = req.query.id;
