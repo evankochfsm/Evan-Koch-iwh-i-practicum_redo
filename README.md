@@ -26,3 +26,8 @@ ___
 - All work must be your own. During the grading process we will check the revision history. Submissions that do not meet this requirement will not be considered.
 - You must have at least two new routes in your index.js file and one new pug template for the homepage.
 - You must create a developer test account and link to it in your README.md file. Submissions that do not meet this requirement will not be considered.
+
+Here's the link to the custom object:
+https://app.hubspot.com/contacts/45275187/objects/2-32667144/views/all/list
+
+So I started this back in February with a different fork (https://github.com/evankochfsm/Evan-Koch-iwh-i-practicum), and didn't commit things as I worked on it.  I realized my error this weekend and created a new fork (https://github.com/evankochfsm/Evan-Koch-iwh-i-practicum_redo). And now at the end, I'm realizing I didn't create a Working Branch and forgot to do the first commit message, but hopefully that can be overlooked.
